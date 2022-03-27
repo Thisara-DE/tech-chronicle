@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+// Create withAuth and export it here
 
 // GET /api/posts/
 router.get('/', (req,res) => {
