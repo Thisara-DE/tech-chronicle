@@ -208,24 +208,44 @@ a:hover {
 }
 
 /* FORM */
-.form-label,
-.form-input,
-.form-textarea {
-  display: block;
+form h2 {
+  margin-bottom: 20px;
 }
 
-.form-label {
+form label,input,
+textarea {
+  display: block;
+  margin-top: 0em;
+}
+
+form label {
   font-size: 1.1rem;
   margin: 0 0 0 5px;
 }
 
-.form-input {
-  width: 100%;
-  padding: 3%;
+form input {
+  width: 20%;
+  padding: 0.25%;
   margin: 5px 0;
   font-size: 1.2rem;
   border: 2px solid var(--light-dark);
   border-radius: var(--border-radius);
+}
+
+form .btn {
+  font-size: 1.3rem;
+  text-decoration:none;
+  padding: 6px 5px;
+  width: 10%;
+  display: block;
+  margin: 20px 0;
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  border: none;
+  outline: none;
+  background-color: var(--light-dark);
+  box-shadow: 3px 3px var(--dark);
+  transform: translate(-1px, -1px);
 }
 
 /* HEIGHT / WIDTH UTILS */
