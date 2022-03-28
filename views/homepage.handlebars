@@ -1,0 +1,9 @@
+<div class="list-group">
+    {{#each posts as |post|}}
+    <ol class="list-item">        
+        <li>
+            {{> post-info post }}
+        </li>        
+    </ol>
+    {{/each}}
+</div>

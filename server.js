@@ -51,8 +51,8 @@ sequelize.sync({ force: false }).then(() => {
         //posts (id, post_title, post content, user_id, created_at, updated_at)
         //comments (id, comment_text, post_id, user_id, created_at, updated_at)
         //user (id, username, email, password)
-//routes (controller)
-    // api routes
+//routes (controller) 
+    // api routes -- done
         //posts
             // get all posts
             // get 1 post

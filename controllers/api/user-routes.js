@@ -104,7 +104,7 @@ router.post('/login', (req,res) => {
     });
 });
 
-// Logout --> /api/users/login
+// Logout --> /api/users/logout
 router.post('/logout', (req,res) => {
     if(req.session.loggedIn) {
         req.session.destroy(() => {
