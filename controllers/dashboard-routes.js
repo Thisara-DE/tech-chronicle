@@ -1,9 +1,15 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth');
 
-router.get('/', (req,res) => {
+
+// GET dashboard/
+router.get('/', withAuth, (req,res) => {
     Post.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
         attributes: ['id', 'post_title', 'post_content', 'created_at', 'updated_at'],
         include: [
             {
@@ -20,25 +26,17 @@ router.get('/', (req,res) => {
             }
         ]
     }).then(dbPostData => {
-        // passing single post object into homepage.handlebars
+        //serialize data before passing to template
         const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('homepage', { posts, loggedIn:req.session.loggedIn, username: req.session.username });
+        res.render('dashboard.handlebars', { posts, loggedIn: true, username: req.session.username });
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
-    
 });
 
-router.get('/login', (req,res) => {
-    if(req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-})
-
-router.get('/post/:id', (req,res) => {
+// POST /dashboard/edit/2
+router.get('/edit/:id', (req,res) => {
     Post.findOne({
         where: {
             id: req.params.id
@@ -59,21 +57,20 @@ router.get('/post/:id', (req,res) => {
             }
         ]
     }).then(dbPostData => {
-        if(!dbPostData) {
-            res.status(404).json({ message: 'No post found with this id' });            
-            return;
-        }
-
-        // serialize the data
-        const post = dbPostData.get({ plain: true });        
-
-        //pass the data into the view
-        res.render('single-post.handlebars', { post, loggedIn: req.session.loggedIn, username: req.session.username });
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
+        //serialize the data before responding
+        const post = dbPostData.get({ plain: true });
+        res.render('edit-post.handlebars', {post, loggedIn: true, username: req.session.username})
     });
 });
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;

@@ -84,15 +84,15 @@ router.post('/login', (req,res) => {
             return;
         }
 
-        const validPassword = dbUserData.checkPassword(dbUserData.password);
+        const validPassword = dbUserData.checkPassword(req.body.password);
 
         if(!validPassword) {
             res.status(404).json({ message: 'Your email or password is wrong'});
             return;
         }
 
-        res.session.save(() => {
-            req.session.user_id = dbUserData.user_id;
+        req.session.save(() => {
+            req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
 

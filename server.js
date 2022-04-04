@@ -72,7 +72,7 @@ sequelize.sync({ force: false }).then(() => {
             // create a comment
             // delete a comment
     // front end routes
-        // home-routes
+        // home-routes -- done
             // get all posts for the homepage (GET) (/)
             // load login/signup page (/login)
             // get 1 post when clicked on the title (GET)('/post/:id')
