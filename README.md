@@ -5,6 +5,8 @@
   * This is a platform to share tech-news. 
   * The users can login and create, delete and comment on posts. 
 
+Deployed application: https://tech-chronicle.herokuapp.com/
+
   <br>
 
   ## Table of Contents
